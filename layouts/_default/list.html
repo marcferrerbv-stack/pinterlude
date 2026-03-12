@@ -1,11 +1,32 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  {{ range .Pages }}
-    <article>
-      <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-      <time>{{ .Date.Format "2 January 2006" }}</time>
-      <p>{{ .Summary }}</p>
-    </article>
-  {{ end }}
+
+  <section class="single-hero">
+    <div class="shape shape--1"></div>
+    <div class="shape shape--2"></div>
+    <div class="single-hero-content">
+      <h1 class="article-title" style="font-family:var(--font-display);font-size:3rem;font-weight:900;color:var(--paper);">{{ .Title }}</h1>
+    </div>
+  </section>
+
+  <div class="article-body-wrap">
+    {{ .Content }}
+    <section class="articles-section" style="padding:2rem 0;">
+      <ul class="articles-grid">
+        {{ range $index, $page := .Pages.ByDate.Reverse }}
+        <li class="article-card reveal" style="transition-delay: {{ mul $index 0.1 }}s;">
+          <a href="{{ .Permalink }}" style="text-decoration:none; color:inherit; display:block;">
+            <div class="article-card-inner">
+              <span class="article-number">{{ printf "%02d" (add $index 1) }}</span>
+              <time class="article-date">{{ .Date.Format "January 2, 2006" }}</time>
+              <h2 class="article-title">{{ .Title }}</h2>
+              {{ if .Summary }}<p class="article-summary">{{ .Summary | plainify | truncate 180 }}</p>{{ end }}
+              <span class="article-readmore">Read more →</span>
+            </div>
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+    </section>
+  </div>
+
 {{ end }}

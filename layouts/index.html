@@ -1,0 +1,51 @@
+{{ define "main" }}
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="shape shape--1"></div>
+    <div class="shape shape--2"></div>
+    <div class="shape shape--3"></div>
+    <div class="shape shape--4"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Pinterlude</h1>
+      <p class="hero-tagline">The interlude between two lives</p>
+      <p class="hero-desc">A couple of Swiss intellectuals left comfort behind to see the world before it's too late. This is not a travel blog. It's the journal of a radical life choice.</p>
+      <a href="#articles" class="hero-cta">Read the journal</a>
+    </div>
+    <div class="scroll-hint">
+      <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <div class="intro-band">
+    <div class="intro-quote reveal">
+      He runs ultramarathons and thinks in systems. She translates literature and sees the world through stories. Together, they chose <span class="highlight">freedom over comfort</span>.
+    </div>
+    <div class="intro-text reveal" style="transition-delay: 0.15s;">
+      After nearly thirty years each in Switzerland — stable careers, mountains, excellent cheese — we made a decision no one understood. We moved to the United States, and from there, we plan to spend <strong>twenty years seeing the world</strong>. Working online, writing, running trails on other continents.
+    </div>
+  </div>
+
+  <!-- ARTICLES -->
+  <section class="articles-section" id="articles">
+    <p class="section-label reveal">Latest</p>
+
+    <ul class="articles-grid">
+      {{ range $index, $page := (where .Site.RegularPages "Section" "blog").ByDate.Reverse }}
+      <li class="article-card{{ if eq $index 0 }} featured{{ end }} reveal" style="transition-delay: {{ mul $index 0.1 }}s;">
+        <a href="{{ .Permalink }}" style="text-decoration:none; color:inherit; display:block;">
+          <div class="article-card-inner">
+            <span class="article-number">{{ printf "%02d" (add $index 1) }}</span>
+            <time class="article-date">{{ .Date.Format "January 2, 2006" }}</time>
+            <h2 class="article-title">{{ .Title }}</h2>
+            {{ if .Summary }}<p class="article-summary">{{ .Summary | plainify | truncate 180 }}</p>{{ end }}
+            <span class="article-readmore">Read more →</span>
+          </div>
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+
+{{ end }}

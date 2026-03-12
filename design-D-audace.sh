@@ -1,3 +1,11 @@
+#!/bin/bash
+# Pinterlude Design D — "Audace" (Bold Editorial)
+# Inspired by Whims & Words energy, adapted for a literary journal
+
+echo "Installing Pinterlude design D — Audace..."
+
+# --- CSS ---
+cat > static/css/style.css << 'CSSEOF'
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600&family=Caveat:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
 :root {
@@ -645,3 +653,211 @@ body::before {
   .intro-quote { font-size: 1.5rem; }
   .article-card .article-title { font-size: 1.3rem; }
 }
+CSSEOF
+
+# --- Base Template ---
+cat > layouts/_default/baseof.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}Pinterlude — The interlude between two lives{{ else }}{{ .Title }} — Pinterlude{{ end }}</title>
+  <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+  <nav class="site-nav-bar">
+    <a href="/" class="nav-logo">Pinterlude</a>
+    <div class="site-nav">
+      <a href="/">Journal</a>
+      <a href="/about/">About</a>
+    </div>
+  </nav>
+
+  {{ block "main" . }}{{ end }}
+
+  <footer class="site-footer">
+    <span class="footer-brand">Pinterlude</span>
+    <p class="footer-text">&copy; 2026 — Marc &amp; Linda</p>
+    <div class="footer-links">
+      <a href="/">Journal</a>
+      <a href="/about/">About</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Netlify Identity
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+HTMLEOF
+
+# --- Home Page ---
+cat > layouts/index.html << 'HTMLEOF'
+{{ define "main" }}
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="shape shape--1"></div>
+    <div class="shape shape--2"></div>
+    <div class="shape shape--3"></div>
+    <div class="shape shape--4"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Pinterlude</h1>
+      <p class="hero-tagline">The interlude between two lives</p>
+      <p class="hero-desc">A couple of Swiss intellectuals left comfort behind to see the world before it's too late. This is not a travel blog. It's the journal of a radical life choice.</p>
+      <a href="#articles" class="hero-cta">Read the journal</a>
+    </div>
+    <div class="scroll-hint">
+      <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <div class="intro-band">
+    <div class="intro-quote reveal">
+      He runs ultramarathons and thinks in systems. She translates literature and sees the world through stories. Together, they chose <span class="highlight">freedom over comfort</span>.
+    </div>
+    <div class="intro-text reveal" style="transition-delay: 0.15s;">
+      After nearly thirty years each in Switzerland — stable careers, mountains, excellent cheese — we made a decision no one understood. We moved to the United States, and from there, we plan to spend <strong>twenty years seeing the world</strong>. Working online, writing, running trails on other continents.
+    </div>
+  </div>
+
+  <!-- ARTICLES -->
+  <section class="articles-section" id="articles">
+    <p class="section-label reveal">Latest</p>
+
+    <ul class="articles-grid">
+      {{ range $index, $page := (where .Site.RegularPages "Section" "blog").ByDate.Reverse }}
+      <li class="article-card{{ if eq $index 0 }} featured{{ end }} reveal" style="transition-delay: {{ mul $index 0.1 }}s;">
+        <a href="{{ .Permalink }}" style="text-decoration:none; color:inherit; display:block;">
+          <div class="article-card-inner">
+            <span class="article-number">{{ printf "%02d" (add $index 1) }}</span>
+            <time class="article-date">{{ .Date.Format "January 2, 2006" }}</time>
+            <h2 class="article-title">{{ .Title }}</h2>
+            {{ if .Summary }}<p class="article-summary">{{ .Summary | plainify | truncate 180 }}</p>{{ end }}
+            <span class="article-readmore">Read more →</span>
+          </div>
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+
+{{ end }}
+HTMLEOF
+
+# --- List Template ---
+cat > layouts/_default/list.html << 'HTMLEOF'
+{{ define "main" }}
+
+  <section class="single-hero">
+    <div class="shape shape--1"></div>
+    <div class="shape shape--2"></div>
+    <div class="single-hero-content">
+      <h1 class="article-title" style="font-family:var(--font-display);font-size:3rem;font-weight:900;color:var(--paper);">{{ .Title }}</h1>
+    </div>
+  </section>
+
+  <div class="article-body-wrap">
+    {{ .Content }}
+    <section class="articles-section" style="padding:2rem 0;">
+      <ul class="articles-grid">
+        {{ range $index, $page := .Pages.ByDate.Reverse }}
+        <li class="article-card reveal" style="transition-delay: {{ mul $index 0.1 }}s;">
+          <a href="{{ .Permalink }}" style="text-decoration:none; color:inherit; display:block;">
+            <div class="article-card-inner">
+              <span class="article-number">{{ printf "%02d" (add $index 1) }}</span>
+              <time class="article-date">{{ .Date.Format "January 2, 2006" }}</time>
+              <h2 class="article-title">{{ .Title }}</h2>
+              {{ if .Summary }}<p class="article-summary">{{ .Summary | plainify | truncate 180 }}</p>{{ end }}
+              <span class="article-readmore">Read more →</span>
+            </div>
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+    </section>
+  </div>
+
+{{ end }}
+HTMLEOF
+
+# --- Single Article ---
+cat > layouts/_default/single.html << 'HTMLEOF'
+{{ define "main" }}
+
+  <section class="single-hero">
+    <div class="shape shape--1"></div>
+    <div class="shape shape--2"></div>
+    <div class="shape shape--3"></div>
+    <div class="single-hero-content">
+      <time class="article-date">{{ .Date.Format "January 2, 2006" }}</time>
+      <h1 class="article-title">{{ .Title }}</h1>
+    </div>
+  </section>
+
+  <div class="article-body-wrap">
+    <div class="article-body">
+      {{ .Content }}
+    </div>
+  </div>
+
+  <div class="article-end">
+    <a href="/" class="back-link">← Back to journal</a>
+  </div>
+
+{{ end }}
+HTMLEOF
+
+# --- About Page ---
+mkdir -p content/about
+cat > content/about/index.md << 'MDEOF'
+---
+title: "About"
+---
+
+We are Marc and Linda.
+
+He has a doctorate in exercise physiology, runs ultramarathons, and thinks in systems. She translates literature across three languages and sees the world through stories. Together, we have seven children between us.
+
+After nearly thirty years each in Switzerland — stable careers, beautiful mountains, excellent cheese — we made a decision that no one around us understood: we left.
+
+Not for a vacation. Not for a sabbatical. We moved to the United States, and from there, we plan to spend the next twenty years seeing the world. Working online, writing, running trails on other continents, translating books in rented apartments with unfamiliar light.
+
+**Pinterlude** is the journal of that choice. The word is a portmanteau — a *pin* dropped between two lives, an *interlude* that might last forever.
+
+## What we write about
+
+We write about the decision itself — why comfort is not the same as life. We write about places, but not the way guidebooks do: what a city smells like at dawn, what the altitude does to your lungs, what it means to be foreign. We write about money, logistics, visas, and the bureaucracy of freedom. And sometimes, we just write because the light was good and the coffee was strong.
+
+## Where to find us
+
+This site is our home base. We also publish a newsletter on [Substack](#) and occasional essays on [YouTube](#).
+
+If you want to reach us: hello@pinterlude.com
+MDEOF
+
+echo "✓ Design D (Audace) installed!"
+echo "Run 'hugo server' to preview."

@@ -3,22 +3,43 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ .Title }} — Pinterlude</title>
+  <title>{{ if .IsHome }}Pinterlude — The interlude between two lives{{ else }}{{ .Title }} — Pinterlude{{ end }}</title>
+  <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   <link rel="stylesheet" href="/css/style.css">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <header>
-    <a href="/">Pinterlude</a>
-    <span>The interlude between two lives</span>
-  </header>
-  <main>
-    {{ block "main" . }}{{ end }}
-  </main>
-  <footer>
-    <p>&copy; 2026 Pinterlude — Marc &amp; Linda</p>
+
+  <nav class="site-nav-bar">
+    <a href="/" class="nav-logo">Pinterlude</a>
+    <div class="site-nav">
+      <a href="/">Journal</a>
+      <a href="/about/">About</a>
+    </div>
+  </nav>
+
+  {{ block "main" . }}{{ end }}
+
+  <footer class="site-footer">
+    <span class="footer-brand">Pinterlude</span>
+    <p class="footer-text">&copy; 2026 — Marc &amp; Linda</p>
+    <div class="footer-links">
+      <a href="/">Journal</a>
+      <a href="/about/">About</a>
+    </div>
   </footer>
+
   <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Netlify Identity
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
