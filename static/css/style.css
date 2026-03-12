@@ -645,3 +645,55 @@ body::before {
   .intro-quote { font-size: 1.5rem; }
   .article-card .article-title { font-size: 1.3rem; }
 }
+
+/* ─── PILLAR TAGS ─── */
+.article-pillar {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.3em 0.9em;
+  border-radius: 50px;
+  display: inline-block;
+  margin-bottom: 0.8rem;
+}
+
+.article-pillar--choice { background: rgba(200,85,61,0.15); color: var(--terracotta); }
+.article-pillar--gaze { background: rgba(42,122,110,0.15); color: var(--teal); }
+.article-pillar--scenes { background: rgba(200,150,62,0.15); color: var(--gold); }
+.article-pillar--motion { background: rgba(42,122,110,0.15); color: var(--teal); }
+.article-pillar--words { background: rgba(107,58,93,0.15); color: var(--plum); }
+
+.article-card.featured .article-pillar--choice { background: rgba(200,85,61,0.25); }
+.article-card.featured .article-pillar--gaze { background: rgba(42,122,110,0.25); }
+.article-card.featured .article-pillar--scenes { background: rgba(200,150,62,0.25); }
+.article-card.featured .article-pillar--motion { background: rgba(42,122,110,0.25); }
+.article-card.featured .article-pillar--words { background: rgba(107,58,93,0.25); }
+
+.article-pillar-single {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.3em 1em;
+  border-radius: 50px;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.article-pillar-single.article-pillar--choice { background: rgba(200,85,61,0.2); color: var(--terracotta); }
+.article-pillar-single.article-pillar--gaze { background: rgba(42,122,110,0.2); color: var(--sage); }
+.article-pillar-single.article-pillar--scenes { background: rgba(200,150,62,0.2); color: var(--gold); }
+.article-pillar-single.article-pillar--motion { background: rgba(42,122,110,0.2); color: var(--sage); }
+.article-pillar-single.article-pillar--words { background: rgba(107,58,93,0.2); color: var(--blush); }
+
+/* ─── COVER IMAGE HERO ─── */
+.single-hero--cover {
+  background-size: cover;
+  background-position: center;
+}
+
+/* ─── AUTHOR IN DATE LINE ─── */
+.article-card.featured .article-date { color: rgba(250,246,241,0.4); }

@@ -1,11 +1,25 @@
 {{ define "main" }}
 
+  {{ if .Params.cover }}
+  <section class="single-hero single-hero--cover" style="background-image: linear-gradient(to bottom, rgba(26,23,20,0.55), rgba(26,23,20,0.85)), url('{{ .Params.cover }}');">
+  {{ else }}
   <section class="single-hero">
     <div class="shape shape--1"></div>
     <div class="shape shape--2"></div>
     <div class="shape shape--3"></div>
+  {{ end }}
     <div class="single-hero-content">
-      <time class="article-date">{{ .Date.Format "January 2, 2006" }}</time>
+      {{ with .Params.pillar }}
+      <span class="article-pillar-single article-pillar--{{ . }}">
+        {{ if eq . "choice" }}The Choice
+        {{ else if eq . "gaze" }}The Gaze
+        {{ else if eq . "scenes" }}Behind the Scenes
+        {{ else if eq . "motion" }}Body in Motion
+        {{ else if eq . "words" }}Linda's Words
+        {{ end }}
+      </span>
+      {{ end }}
+      <time class="article-date">{{ .Date.Format "January 2, 2006" }}{{ with .Params.author }} · {{ . }}{{ end }}</time>
       <h1 class="article-title">{{ .Title }}</h1>
     </div>
   </section>

@@ -11,8 +11,44 @@ collections:
     folder: "content/blog"
     create: true
     slug: "{{slug}}"
+    sortable_fields: ["date", "title", "author", "pillar"]
+    view_filters:
+      - label: "Marc"
+        field: author
+        pattern: "Marc"
+      - label: "Linda"
+        field: author
+        pattern: "Linda"
+    view_groups:
+      - label: "Pillar"
+        field: pillar
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Description", name: "description", widget: "text", required: false, hint: "Short summary for previews and SEO (1-2 sentences)" }
+      - label: "Author"
+        name: "author"
+        widget: "select"
+        options:
+          - { label: "Marc", value: "Marc" }
+          - { label: "Linda", value: "Linda" }
+          - { label: "Marc & Linda", value: "Marc & Linda" }
+        default: "Marc"
+      - label: "Pillar"
+        name: "pillar"
+        widget: "select"
+        options:
+          - { label: "The Choice — Life decisions", value: "choice" }
+          - { label: "The Gaze — Understanding places", value: "gaze" }
+          - { label: "Behind the Scenes — Nomad logistics", value: "scenes" }
+          - { label: "Body in Motion — Sport & travel", value: "motion" }
+          - { label: "Linda's Words — Literary voice", value: "words" }
+        required: false
+        hint: "Which content pillar does this belong to?"
+      - label: "Cover Image"
+        name: "cover"
+        widget: "image"
+        required: false
+        hint: "Optional cover image for the article"
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Body", name: "body", widget: "markdown" }
