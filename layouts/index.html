@@ -2,19 +2,19 @@
 
   {{ partial "nav.html" . }}
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="shape shape--1"></div>
-    <div class="shape shape--2"></div>
-    <div class="shape shape--3"></div>
-    <div class="shape shape--4"></div>
+  <!-- HERO with parallax -->
+  <section class="hero" id="heroSection">
+    <div class="shape shape--1" data-speed="0.3"></div>
+    <div class="shape shape--2" data-speed="0.5"></div>
+    <div class="shape shape--3" data-speed="0.2"></div>
+    <div class="shape shape--4" data-speed="0.4"></div>
     <div class="hero-content">
-      <h1 class="hero-title">Pinterlude</h1>
-      <p class="hero-tagline">The interlude between two lives</p>
-      <p class="hero-desc">A couple of Swiss intellectuals left comfort behind to see the world before it's too late. This is not a travel blog. It's the journal of a radical life choice.</p>
-      <a href="#articles" class="hero-cta">Read the journal</a>
+      <h1 class="hero-title" id="heroTitle"></h1>
+      <p class="hero-tagline" id="heroTagline" style="opacity:0;">The interlude between two lives</p>
+      <p class="hero-desc" id="heroDesc" style="opacity:0;">A couple of Swiss intellectuals left comfort behind to see the world before it's too late. This is not a travel blog. It's the journal of a radical life choice.</p>
+      <a href="#articles" class="hero-cta" id="heroCta" style="opacity:0;">Read the journal</a>
     </div>
-    <div class="scroll-hint">
+    <div class="scroll-hint" id="heroScroll" style="opacity:0;">
       <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </div>
   </section>
@@ -32,7 +32,7 @@
   <!-- NEWSLETTER -->
   <div class="newsletter-band reveal">
     <div class="newsletter-inner">
-      <span class="newsletter-icon">✉</span>
+      <span class="newsletter-icon">&#x2709;</span>
       <h3 class="newsletter-title">Follow the journey</h3>
       <p class="newsletter-desc">Long essays, honest dispatches, and the occasional existential crisis — delivered to your inbox.</p>
       <a href="https://pinterlude.substack.com" target="_blank" rel="noopener" class="newsletter-btn">Subscribe on Substack</a>
@@ -42,7 +42,6 @@
   <!-- ARTICLES -->
   <section class="articles-section" id="articles">
     <p class="section-label reveal">Latest</p>
-
     <ul class="articles-grid">
       {{ range $index, $page := (where .Site.RegularPages "Section" "blog").ByDate.Reverse }}
       <li class="article-card{{ if .Params.featured }} featured{{ else if eq $index 0 }} featured{{ end }} reveal" style="transition-delay: {{ mul $index 0.1 }}s;">
@@ -52,36 +51,71 @@
             <div class="article-card-meta">
               {{ with .Params.pillar }}
               <span class="article-pillar article-pillar--{{ . }}">
-                {{ if eq . "choice" }}The Choice
-                {{ else if eq . "gaze" }}The Gaze
-                {{ else if eq . "scenes" }}Behind the Scenes
-                {{ else if eq . "motion" }}Body in Motion
-                {{ else if eq . "words" }}Linda's Words
-                {{ end }}
+                {{ if eq . "choice" }}The Choice{{ else if eq . "gaze" }}The Gaze{{ else if eq . "scenes" }}Behind the Scenes{{ else if eq . "motion" }}Body in Motion{{ else if eq . "words" }}Linda's Words{{ end }}
               </span>
               {{ end }}
               {{ if eq .Params.language "fr" }}<span class="article-lang">FR</span>{{ end }}
             </div>
-            <time class="article-date">{{ .Date.Format "January 2, 2006" }}{{ with .Params.author }} · {{ . }}{{ end }}{{ with .Params.location }} · {{ . }}{{ end }} · {{ .ReadingTime }} min read</time>
+            <time class="article-date">{{ .Date.Format "January 2, 2006" }}{{ with .Params.author }} &middot; {{ . }}{{ end }}{{ with .Params.location }} &middot; {{ . }}{{ end }} &middot; {{ .ReadingTime }} min read</time>
             <h2 class="article-title">{{ .Title }}</h2>
-            {{ with .Params.description }}
-            <p class="article-summary">{{ . }}</p>
-            {{ else }}
-            {{ if .Summary }}<p class="article-summary">{{ .Summary | plainify | truncate 180 }}</p>{{ end }}
-            {{ end }}
+            {{ with .Params.description }}<p class="article-summary">{{ . }}</p>{{ else }}{{ if .Summary }}<p class="article-summary">{{ .Summary | plainify | truncate 180 }}</p>{{ end }}{{ end }}
             {{ with .Params.tags }}
-            <div class="article-card-footer">
-              <div class="article-tags">
-                {{ range first 3 . }}<span class="article-tag">{{ . }}</span>{{ end }}
-              </div>
-            </div>
+            <div class="article-card-footer"><div class="article-tags">
+              {{ range first 3 . }}<span class="article-tag">{{ . }}</span>{{ end }}
+            </div></div>
             {{ end }}
-            <span class="article-readmore">Read more →</span>
+            <span class="article-readmore">Read more &#x2192;</span>
           </div>
         </a>
       </li>
       {{ end }}
     </ul>
   </section>
+
+  <script>
+    // Typewriter effect
+    const title = 'Pinterlude';
+    const el = document.getElementById('heroTitle');
+    let i = 0;
+    function typeChar() {
+      if (i < title.length) {
+        el.textContent += title[i];
+        i++;
+        setTimeout(typeChar, 120 + Math.random() * 80);
+      } else {
+        // Show rest of hero
+        setTimeout(() => {
+          document.getElementById('heroTagline').style.opacity = '1';
+          document.getElementById('heroTagline').style.transform = 'translateY(0)';
+          document.getElementById('heroTagline').style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+        }, 200);
+        setTimeout(() => {
+          document.getElementById('heroDesc').style.opacity = '1';
+          document.getElementById('heroDesc').style.transform = 'translateY(0)';
+          document.getElementById('heroDesc').style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+        }, 500);
+        setTimeout(() => {
+          document.getElementById('heroCta').style.opacity = '1';
+          document.getElementById('heroCta').style.transform = 'translateY(0)';
+          document.getElementById('heroCta').style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+        }, 800);
+        setTimeout(() => {
+          document.getElementById('heroScroll').style.opacity = '1';
+          document.getElementById('heroScroll').style.transition = 'opacity 1s';
+        }, 1200);
+      }
+    }
+    // Start after page loads
+    setTimeout(typeChar, 500);
+
+    // Parallax on hero shapes
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      document.querySelectorAll('.hero .shape[data-speed]').forEach(shape => {
+        const speed = parseFloat(shape.getAttribute('data-speed'));
+        shape.style.transform = 'translateY(' + (scrolled * speed) + 'px)';
+      });
+    });
+  </script>
 
 {{ end }}

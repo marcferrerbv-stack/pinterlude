@@ -1,12 +1,9 @@
 <footer class="site-footer">
   <div class="footer-stats reveal">
     {{ $articles := where .Site.RegularPages "Section" "blog" }}
-    {{ $authors := slice }}
     {{ $locations := slice }}
     {{ range $articles }}
-      {{ with .Params.location }}
-        {{ $locations = $locations | append . }}
-      {{ end }}
+      {{ with .Params.location }}{{ $locations = $locations | append . }}{{ end }}
     {{ end }}
     {{ $uniqueLocations := uniq $locations }}
     <div class="stat">
@@ -22,7 +19,7 @@
       <span class="stat-label">writers</span>
     </div>
     <div class="stat">
-      <span class="stat-number">∞</span>
+      <span class="stat-number">&infin;</span>
       <span class="stat-label">roads ahead</span>
     </div>
   </div>
@@ -32,7 +29,10 @@
     <a href="/">Journal</a>
     <a href="/about/">About</a>
     <a href="/pillars/">Pillars</a>
+    <a href="/map/">Map</a>
+    <a href="/archives/">Archives</a>
+    <a href="/contact/">Contact</a>
     <a href="/search/">Search</a>
-    <a href="/feed.xml" title="RSS Feed">RSS</a>
+    <a href="/feed.xml">RSS</a>
   </div>
 </footer>
