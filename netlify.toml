@@ -4,3 +4,8 @@
 
 [build.environment]
   HUGO_VERSION = "0.157.0"
+
+# Email notification on deploy (configure in Netlify dashboard)
+# Go to: Site settings > Build & deploy > Deploy notifications
+# Add: "Email notification" for "Deploy succeeded"
+# Enter: marc.ferrer.bv@gmail.com
