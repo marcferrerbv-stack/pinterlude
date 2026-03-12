@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ .Title }} — Pinterlude</title>
   <link rel="stylesheet" href="/css/style.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <header>
     <a href="/">Pinterlude</a>
-    <span>L'interlude entre deux vies</span>
+    <span>The interlude between two lives</span>
   </header>
   <main>
     {{ block "main" . }}{{ end }}
@@ -17,5 +18,16 @@
   <footer>
     <p>&copy; 2026 Pinterlude — Marc &amp; Linda</p>
   </footer>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 </body>
 </html>
