@@ -1,10 +1,13 @@
 {{ define "main" }}
 
-  <section class="single-hero">
+  {{ partial "nav.html" . }}
+
+  <section class="single-hero" style="min-height:40vh;">
     <div class="shape shape--1"></div>
     <div class="shape shape--2"></div>
     <div class="single-hero-content">
       <h1 class="article-title" style="font-family:var(--font-display);font-size:3rem;font-weight:900;color:var(--paper);">{{ .Title }}</h1>
+      {{ with .Description }}<p style="color:rgba(250,246,241,0.5);margin-top:1rem;font-size:1rem;">{{ . }}</p>{{ end }}
     </div>
   </section>
 
@@ -17,9 +20,24 @@
           <a href="{{ .Permalink }}" style="text-decoration:none; color:inherit; display:block;">
             <div class="article-card-inner">
               <span class="article-number">{{ printf "%02d" (add $index 1) }}</span>
-              <time class="article-date">{{ .Date.Format "January 2, 2006" }}</time>
+              <div class="article-card-meta">
+                {{ with .Params.pillar }}
+                <span class="article-pillar article-pillar--{{ . }}">
+                  {{ if eq . "choice" }}The Choice
+                  {{ else if eq . "gaze" }}The Gaze
+                  {{ else if eq . "scenes" }}Behind the Scenes
+                  {{ else if eq . "motion" }}Body in Motion
+                  {{ else if eq . "words" }}Linda's Words
+                  {{ end }}
+                </span>
+                {{ end }}
+                {{ if eq .Params.language "fr" }}<span class="article-lang">FR</span>{{ end }}
+              </div>
+              <time class="article-date">{{ .Date.Format "January 2, 2006" }}{{ with .Params.author }} · {{ . }}{{ end }} · {{ .ReadingTime }} min read</time>
               <h2 class="article-title">{{ .Title }}</h2>
-              {{ if .Summary }}<p class="article-summary">{{ .Summary | plainify | truncate 180 }}</p>{{ end }}
+              {{ with .Params.description }}
+              <p class="article-summary">{{ . }}</p>
+              {{ end }}
               <span class="article-readmore">Read more →</span>
             </div>
           </a>

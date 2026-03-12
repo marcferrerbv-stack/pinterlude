@@ -1,0 +1,38 @@
+<footer class="site-footer">
+  <div class="footer-stats reveal">
+    {{ $articles := where .Site.RegularPages "Section" "blog" }}
+    {{ $authors := slice }}
+    {{ $locations := slice }}
+    {{ range $articles }}
+      {{ with .Params.location }}
+        {{ $locations = $locations | append . }}
+      {{ end }}
+    {{ end }}
+    {{ $uniqueLocations := uniq $locations }}
+    <div class="stat">
+      <span class="stat-number">{{ len $articles }}</span>
+      <span class="stat-label">article{{ if gt (len $articles) 1 }}s{{ end }}</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">{{ len $uniqueLocations }}</span>
+      <span class="stat-label">location{{ if gt (len $uniqueLocations) 1 }}s{{ end }}</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">2</span>
+      <span class="stat-label">writers</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">∞</span>
+      <span class="stat-label">roads ahead</span>
+    </div>
+  </div>
+  <span class="footer-brand">Pinterlude</span>
+  <p class="footer-text">&copy; 2026 — Marc &amp; Linda</p>
+  <div class="footer-links">
+    <a href="/">Journal</a>
+    <a href="/about/">About</a>
+    <a href="/pillars/">Pillars</a>
+    <a href="/search/">Search</a>
+    <a href="/feed.xml" title="RSS Feed">RSS</a>
+  </div>
+</footer>

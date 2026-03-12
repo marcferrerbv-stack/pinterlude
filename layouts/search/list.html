@@ -1,0 +1,68 @@
+{{ define "main" }}
+
+  {{ partial "nav.html" . }}
+
+  <section class="single-hero" style="min-height:35vh;">
+    <div class="shape shape--1"></div>
+    <div class="shape shape--2"></div>
+    <div class="single-hero-content" style="text-align:center;">
+      <h1 class="article-title" style="font-family:var(--font-display);font-size:2.5rem;font-weight:900;color:var(--paper);">Search</h1>
+    </div>
+  </section>
+
+  <div class="search-page">
+    <input type="text" id="searchInput" class="search-input" placeholder="Search articles..." autofocus>
+    <div id="searchResults" class="search-results"></div>
+  </div>
+
+  <!-- Search index -->
+  <script>
+    const searchIndex = [
+      {{ range (where .Site.RegularPages "Section" "blog") }}
+      {
+        title: {{ .Title | jsonify }},
+        url: {{ .Permalink | jsonify }},
+        content: {{ .Plain | truncate 500 | jsonify }},
+        description: {{ with .Params.description }}{{ . | jsonify }}{{ else }}""{{ end }},
+        author: {{ with .Params.author }}{{ . | jsonify }}{{ else }}""{{ end }},
+        pillar: {{ with .Params.pillar }}{{ . | jsonify }}{{ else }}""{{ end }},
+        tags: {{ with .Params.tags }}{{ . | jsonify }}{{ else }}[]{{ end }},
+        date: {{ .Date.Format "January 2, 2006" | jsonify }},
+        location: {{ with .Params.location }}{{ . | jsonify }}{{ else }}""{{ end }},
+        readingTime: {{ .ReadingTime }}
+      },
+      {{ end }}
+    ];
+
+    const input = document.getElementById('searchInput');
+    const results = document.getElementById('searchResults');
+
+    input.addEventListener('input', function() {
+      const query = this.value.toLowerCase().trim();
+      if (query.length < 2) { results.innerHTML = ''; return; }
+
+      const matches = searchIndex.filter(item => {
+        return item.title.toLowerCase().includes(query) ||
+               item.content.toLowerCase().includes(query) ||
+               item.description.toLowerCase().includes(query) ||
+               item.author.toLowerCase().includes(query) ||
+               (item.tags && item.tags.some(t => t.toLowerCase().includes(query))) ||
+               (item.location && item.location.toLowerCase().includes(query));
+      });
+
+      if (matches.length === 0) {
+        results.innerHTML = '<p class="search-empty">No articles found for "' + query + '"</p>';
+        return;
+      }
+
+      results.innerHTML = matches.map(item => 
+        '<a href="' + item.url + '" class="search-result">' +
+          '<h3>' + item.title + '</h3>' +
+          '<p class="search-result-meta">' + item.date + (item.author ? ' · ' + item.author : '') + ' · ' + item.readingTime + ' min read</p>' +
+          (item.description ? '<p class="search-result-desc">' + item.description + '</p>' : '') +
+        '</a>'
+      ).join('');
+    });
+  </script>
+
+{{ end }}

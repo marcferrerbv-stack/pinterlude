@@ -1,0 +1,52 @@
+{{ define "main" }}
+
+  {{ partial "nav.html" . }}
+
+  <section class="single-hero" style="min-height:50vh;">
+    <div class="shape shape--1"></div>
+    <div class="shape shape--2"></div>
+    <div class="shape shape--3"></div>
+    <div class="single-hero-content" style="text-align:center;">
+      <h1 class="article-title" style="font-family:var(--font-display);font-size:3rem;font-weight:900;color:var(--paper);">Five ways<br>to tell a story</h1>
+      <p style="color:rgba(250,246,241,0.5);margin-top:1rem;font-size:1rem;max-width:500px;margin-left:auto;margin-right:auto;">Every article belongs to a pillar — a lens through which we see and share our life.</p>
+    </div>
+  </section>
+
+  <div class="pillars-page">
+    {{ $pages := where .Site.RegularPages "Section" "blog" }}
+
+    {{ $pillars := slice
+      (dict "id" "choice" "name" "The Choice" "desc" "The chronicle of the big decision. Leaving Switzerland, the uncertainty, the quiet victories." "color" "terracotta")
+      (dict "id" "gaze" "name" "The Gaze" "desc" "Understanding a place, not just visiting it. The double lens: Marc scientific, Linda literary." "color" "teal")
+      (dict "id" "scenes" "name" "Behind the Scenes" "desc" "Nomad life unfiltered. Money, logistics, green cards, subletting." "color" "gold")
+      (dict "id" "motion" "name" "Body in Motion" "desc" "Sport, health and travel. Trail running, altitude, exercise physiology on the move." "color" "teal")
+      (dict "id" "words" "name" "Linda's Words" "desc" "The literary voice. Discoveries, translation, mood pieces." "color" "plum")
+    }}
+
+    {{ range $pillars }}
+    {{ $pillarID := .id }}
+    {{ $articles := where $pages "Params.pillar" $pillarID }}
+    <div class="pillar-section reveal">
+      <div class="pillar-header pillar-header--{{ .color }}">
+        <h2 class="pillar-name">{{ .name }}</h2>
+        <p class="pillar-desc">{{ .desc }}</p>
+        <span class="pillar-count">{{ len $articles }} article{{ if gt (len $articles) 1 }}s{{ end }}</span>
+      </div>
+      {{ if $articles }}
+      <ul class="pillar-articles">
+        {{ range $articles }}
+        <li>
+          <a href="{{ .Permalink }}">
+            <time>{{ .Date.Format "Jan 2006" }}</time>
+            <span>{{ .Title }}</span>
+            {{ with .Params.author }}<em>{{ . }}</em>{{ end }}
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+
+{{ end }}

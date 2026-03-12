@@ -1,23 +1,43 @@
 ---
 title: "About"
+description: "The story behind Pinterlude — who we are, why we left, and where we're going."
 ---
 
-We are Marc and Linda.
+<div class="about-intro">
+  <div class="about-intro-text">
+    <h2>We are Marc & Linda.</h2>
+    <p class="about-lead">Two Swiss. Seven children between us. Nearly sixty years of combined life in one of the most comfortable countries on earth. And one day, a decision that nobody around us understood.</p>
+  </div>
+</div>
 
-He has a doctorate in exercise physiology, runs ultramarathons, and thinks in systems. She translates literature across three languages and sees the world through stories. Together, we have seven children between us.
+---
 
-After nearly thirty years each in Switzerland — stable careers, beautiful mountains, excellent cheese — we made a decision that no one around us understood: we left.
+## Marc
 
-Not for a vacation. Not for a sabbatical. We moved to the United States, and from there, we plan to spend the next twenty years seeing the world. Working online, writing, running trails on other continents, translating books in rented apartments with unfamiliar light.
+Three master's degrees and a doctorate in exercise physiology. Affiliated researcher at the University of Lausanne. Ultramarathon runner — 10 to 15 hours of training per week across trails, swimming, and cycling. Speaks French, English, Russian, and increasingly passable Spanish.
 
-**Pinterlude** is the journal of that choice. The word is a portmanteau — a *pin* dropped between two lives, an *interlude* that might last forever.
+Currently building online education platforms, preparing for the ACSM-EP certification, and trying to convince his body that altitude in Colorado is "character building."
 
-## What we write about
+## Linda
 
-We write about the decision itself — why comfort is not the same as life. We write about places, but not the way guidebooks do: what a city smells like at dawn, what the altitude does to your lungs, what it means to be foreign. We write about money, logistics, visas, and the bureaucracy of freedom. And sometimes, we just write because the light was good and the coffee was strong.
+A bachelor's and master's in English, earned while teaching and raising seven children. Ten years managing luxury construction projects. Now a literary translator across three languages — French, English, and Russian.
 
-## Where to find us
+Launching her translation career in New York starting April 2026. The kind of person who reads Dostoevsky on the subway and doesn't think that's unusual.
 
-This site is our home base. We also publish a newsletter on [Substack](#) and occasional essays on [YouTube](#).
+---
 
-If you want to reach us: hello@pinterlude.com
+## The plan
+
+We left Switzerland in 2024. We're currently based in Colorado. Starting 2027, we begin traveling — six months a year at first, more after Marc gets his U.S. citizenship. South America first (Colombia, Argentina, Peru), then Southeast Asia, then wherever the roads lead.
+
+We work online. We write. We run. We translate. And we document the whole thing here.
+
+**Pinterlude** is a portmanteau: a *pin* dropped between two lives, an *interlude* that might just last twenty years.
+
+---
+
+## Find us elsewhere
+
+- **Newsletter**: [Substack](https://pinterlude.substack.com)
+- **Video essays**: [YouTube](#)
+- **Contact**: hello@pinterlude.com

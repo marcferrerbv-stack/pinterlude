@@ -5,3 +5,21 @@ title = "Pinterlude"
 [params]
   tagline = "The interlude between two lives"
   description = "The journal of a radical life choice — by Marc & Linda"
+  ogImage = "/images/og-default.jpg"
+
+[taxonomies]
+  tag = "tags"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+[outputFormats]
+  [outputFormats.RSS]
+    mediaType = "application/rss+xml"
+    baseName = "feed"

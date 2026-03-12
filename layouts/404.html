@@ -1,0 +1,29 @@
+{{ define "main" }}{{ end }}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lost — Pinterlude</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+  <section class="hero" style="min-height:100vh;">
+    <div class="shape shape--1"></div>
+    <div class="shape shape--2"></div>
+    <div class="shape shape--3"></div>
+    <div class="shape shape--4"></div>
+    <div class="hero-content" style="text-align:center;">
+      <p style="font-family:var(--font-mono);font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(250,246,241,0.4);margin-bottom:1rem;">404</p>
+      <h1 style="font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;color:var(--paper);line-height:1.1;margin-bottom:1.5rem;">Not all who wander<br>are lost.</h1>
+      <p style="font-family:var(--font-display);font-style:italic;font-size:1.1rem;color:rgba(250,246,241,0.5);margin-bottom:2.5rem;">But this page is.</p>
+      <a href="/" class="hero-cta">Back to the journal</a>
+    </div>
+  </section>
+  <script>
+    const theme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+  </script>
+</body>
+</html>
