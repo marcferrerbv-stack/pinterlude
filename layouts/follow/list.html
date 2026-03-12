@@ -1,0 +1,59 @@
+{{ define "main" }}
+
+  {{ partial "nav.html" . }}
+
+  <section class="single-hero" style="min-height:45vh;">
+    <div class="shape shape--1"></div>
+    <div class="shape shape--2"></div>
+    <div class="shape shape--3"></div>
+    <div class="single-hero-content" style="text-align:center;">
+      <h1 class="article-title" style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,3.5rem);font-weight:900;color:var(--paper);">Follow the journey</h1>
+      <p style="color:rgba(250,246,241,0.5);margin-top:1rem;font-size:1.05rem;font-family:var(--font-display);font-style:italic;">Find us wherever you prefer to read, watch, or scroll</p>
+    </div>
+  </section>
+
+  <div class="follow-page">
+
+    <div class="follow-grid">
+      <a href="https://pinterlude.substack.com" target="_blank" rel="noopener" class="follow-card follow-card--substack reveal">
+        <div class="follow-card-icon">✉</div>
+        <h3>Newsletter</h3>
+        <p class="follow-card-platform">Substack</p>
+        <p class="follow-card-desc">Long essays and honest dispatches, delivered to your inbox. The fullest version of what we write.</p>
+        <span class="follow-card-cta">Subscribe →</span>
+      </a>
+
+      <a href="#" target="_blank" rel="noopener" class="follow-card follow-card--youtube reveal" style="transition-delay:0.1s;">
+        <div class="follow-card-icon">▶</div>
+        <h3>Video Essays</h3>
+        <p class="follow-card-platform">YouTube</p>
+        <p class="follow-card-desc">12-20 minute filmed essays. Not vlogs — think visual storytelling with substance.</p>
+        <span class="follow-card-cta">Watch →</span>
+      </a>
+
+      <a href="#" target="_blank" rel="noopener" class="follow-card follow-card--instagram reveal" style="transition-delay:0.2s;">
+        <div class="follow-card-icon">◻</div>
+        <h3>Photos & Stories</h3>
+        <p class="follow-card-platform">Instagram</p>
+        <p class="follow-card-desc">Long captions, intentional photos, teasers for new articles. The visual side of the journal.</p>
+        <span class="follow-card-cta">Follow →</span>
+      </a>
+
+      <a href="/feed.xml" class="follow-card follow-card--rss reveal" style="transition-delay:0.3s;">
+        <div class="follow-card-icon">◉</div>
+        <h3>RSS Feed</h3>
+        <p class="follow-card-platform">Any reader</p>
+        <p class="follow-card-desc">Old school, no algorithm. Get every article in your favorite RSS reader.</p>
+        <span class="follow-card-cta">Subscribe →</span>
+      </a>
+    </div>
+
+    <div class="follow-contact reveal">
+      <h3>Direct contact</h3>
+      <p>For translation projects, press inquiries, trail recommendations, or just to say hello:</p>
+      <a href="mailto:hello@pinterlude.com" class="follow-email">hello@pinterlude.com</a>
+    </div>
+
+  </div>
+
+{{ end }}
