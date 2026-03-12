@@ -1,3 +1,7 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Project'
+baseURL = "https://pinterlude.com/"
+languageCode = "fr"
+title = "Pinterlude"
+
+[params]
+  tagline = "L'interlude entre deux vies"
+  description = "Le journal d'un choix de vie radical — par Marc & Linda"
