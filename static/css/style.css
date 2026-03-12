@@ -1,0 +1,8 @@
+body { font-family: Georgia, serif; max-width: 720px; margin: 0 auto; padding: 2rem; color: #2a2a2a; line-height: 1.7; }
+header { margin-bottom: 3rem; }
+header a { font-size: 1.8rem; text-decoration: none; color: #1a1a1a; font-weight: bold; }
+header span { display: block; font-style: italic; color: #777; margin-top: 0.3rem; }
+h1 { font-size: 1.6rem; }
+h2 a { color: #1a1a1a; text-decoration: none; }
+time { color: #999; font-size: 0.9rem; }
+footer { margin-top: 4rem; border-top: 1px solid #ddd; padding-top: 1rem; color: #999; font-size: 0.85rem; }
