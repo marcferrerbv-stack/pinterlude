@@ -1,7 +1,7 @@
 baseURL = "https://pinterlude.com/"
-languageCode = "fr"
+languageCode = "en"
 title = "Pinterlude"
 
 [params]
-  tagline = "L'interlude entre deux vies"
-  description = "Le journal d'un choix de vie radical — par Marc & Linda"
+  tagline = "The interlude between two lives"
+  description = "The journal of a radical life choice — by Marc & Linda"
