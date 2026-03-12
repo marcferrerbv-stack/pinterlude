@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ if .IsHome }}Pinterlude — The interlude between two lives{{ else }}{{ .Title }} — Pinterlude{{ end }}</title>
+  <title>{{ if .IsHome }}Pinterlude — Where one life ends and another begins{{ else }}{{ .Title }} — Pinterlude{{ end }}</title>
   <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   <meta property="og:title" content="{{ if .IsHome }}Pinterlude{{ else }}{{ .Title }}{{ end }}">
   <meta property="og:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
