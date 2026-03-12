@@ -33,26 +33,38 @@
 
     <ul class="articles-grid">
       {{ range $index, $page := (where .Site.RegularPages "Section" "blog").ByDate.Reverse }}
-      <li class="article-card{{ if eq $index 0 }} featured{{ end }} reveal" style="transition-delay: {{ mul $index 0.1 }}s;">
+      <li class="article-card{{ if .Params.featured }} featured{{ else if eq $index 0 }} featured{{ end }} reveal" style="transition-delay: {{ mul $index 0.1 }}s;">
         <a href="{{ .Permalink }}" style="text-decoration:none; color:inherit; display:block;">
           <div class="article-card-inner">
             <span class="article-number">{{ printf "%02d" (add $index 1) }}</span>
-            {{ with .Params.pillar }}
-            <span class="article-pillar article-pillar--{{ . }}">
-              {{ if eq . "choice" }}The Choice
-              {{ else if eq . "gaze" }}The Gaze
-              {{ else if eq . "scenes" }}Behind the Scenes
-              {{ else if eq . "motion" }}Body in Motion
-              {{ else if eq . "words" }}Linda's Words
+            <div class="article-card-meta">
+              {{ with .Params.pillar }}
+              <span class="article-pillar article-pillar--{{ . }}">
+                {{ if eq . "choice" }}The Choice
+                {{ else if eq . "gaze" }}The Gaze
+                {{ else if eq . "scenes" }}Behind the Scenes
+                {{ else if eq . "motion" }}Body in Motion
+                {{ else if eq . "words" }}Linda's Words
+                {{ end }}
+              </span>
               {{ end }}
-            </span>
-            {{ end }}
-            <time class="article-date">{{ .Date.Format "January 2, 2006" }}{{ with .Params.author }} · {{ . }}{{ end }}</time>
+              {{ if eq .Params.language "fr" }}<span class="article-lang">FR</span>{{ end }}
+            </div>
+            <time class="article-date">{{ .Date.Format "January 2, 2006" }}{{ with .Params.author }} · {{ . }}{{ end }}{{ with .Params.location }} · {{ . }}{{ end }}</time>
             <h2 class="article-title">{{ .Title }}</h2>
             {{ with .Params.description }}
             <p class="article-summary">{{ . }}</p>
             {{ else }}
             {{ if .Summary }}<p class="article-summary">{{ .Summary | plainify | truncate 180 }}</p>{{ end }}
+            {{ end }}
+            {{ if or .Params.tags .Params.substack_url .Params.youtube_url }}
+            <div class="article-card-footer">
+              {{ with .Params.tags }}
+              <div class="article-tags">
+                {{ range first 3 . }}<span class="article-tag">{{ . }}</span>{{ end }}
+              </div>
+              {{ end }}
+            </div>
             {{ end }}
             <span class="article-readmore">Read more →</span>
           </div>

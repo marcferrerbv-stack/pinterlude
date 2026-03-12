@@ -697,3 +697,166 @@ body::before {
 
 /* ─── AUTHOR IN DATE LINE ─── */
 .article-card.featured .article-date { color: rgba(250,246,241,0.4); }
+
+/* ─── LANGUAGE TAG ─── */
+.article-lang {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2em 0.6em;
+  border-radius: 3px;
+  background: rgba(26,23,20,0.08);
+  color: var(--text-secondary);
+  display: inline-block;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.article-card.featured .article-lang {
+  background: rgba(250,246,241,0.12);
+  color: rgba(250,246,241,0.5);
+}
+
+.article-lang-single {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25em 0.7em;
+  border-radius: 3px;
+  background: rgba(250,246,241,0.1);
+  color: rgba(250,246,241,0.5);
+  display: inline-block;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+/* ─── CARD META ROW ─── */
+.article-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ─── TAGS ON CARDS ─── */
+.article-card-footer {
+  margin-top: 0.8rem;
+}
+
+.article-tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.article-tag {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.05em;
+  padding: 0.2em 0.6em;
+  border-radius: 3px;
+  background: rgba(26,23,20,0.06);
+  color: var(--text-secondary);
+}
+
+.article-card.featured .article-tag {
+  background: rgba(250,246,241,0.08);
+  color: rgba(250,246,241,0.4);
+}
+
+/* ─── TAGS ON SINGLE ARTICLE ─── */
+.article-tags-full {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.article-tag-link {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  padding: 0.3em 0.8em;
+  border-radius: 4px;
+  background: rgba(26,23,20,0.05);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.article-tag-link:hover {
+  background: var(--terracotta);
+  color: white;
+}
+
+/* ─── CROSS-LINKS (Substack / YouTube) ─── */
+.article-crosslinks {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(26,23,20,0.03);
+  border-radius: 12px;
+}
+
+.crosslinks-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 0.8rem;
+}
+
+.crosslink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.6em 1.2em;
+  border-radius: 8px;
+  margin-right: 0.8rem;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s;
+}
+
+.crosslink--substack {
+  background: rgba(255,106,0,0.08);
+  color: #FF6A00;
+}
+
+.crosslink--substack:hover {
+  background: rgba(255,106,0,0.15);
+  transform: translateY(-2px);
+}
+
+.crosslink--youtube {
+  background: rgba(255,0,0,0.06);
+  color: #CC0000;
+}
+
+.crosslink--youtube:hover {
+  background: rgba(255,0,0,0.12);
+  transform: translateY(-2px);
+}
+
+.crosslink-icon {
+  font-size: 1.1rem;
+}
+
+/* ─── HERO META ROW ─── */
+.single-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}

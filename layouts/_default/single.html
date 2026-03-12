@@ -9,17 +9,20 @@
     <div class="shape shape--3"></div>
   {{ end }}
     <div class="single-hero-content">
-      {{ with .Params.pillar }}
-      <span class="article-pillar-single article-pillar--{{ . }}">
-        {{ if eq . "choice" }}The Choice
-        {{ else if eq . "gaze" }}The Gaze
-        {{ else if eq . "scenes" }}Behind the Scenes
-        {{ else if eq . "motion" }}Body in Motion
-        {{ else if eq . "words" }}Linda's Words
+      <div class="single-hero-meta">
+        {{ with .Params.pillar }}
+        <span class="article-pillar-single article-pillar--{{ . }}">
+          {{ if eq . "choice" }}The Choice
+          {{ else if eq . "gaze" }}The Gaze
+          {{ else if eq . "scenes" }}Behind the Scenes
+          {{ else if eq . "motion" }}Body in Motion
+          {{ else if eq . "words" }}Linda's Words
+          {{ end }}
+        </span>
         {{ end }}
-      </span>
-      {{ end }}
-      <time class="article-date">{{ .Date.Format "January 2, 2006" }}{{ with .Params.author }} · {{ . }}{{ end }}</time>
+        {{ if eq .Params.language "fr" }}<span class="article-lang-single">FR</span>{{ end }}
+      </div>
+      <time class="article-date">{{ .Date.Format "January 2, 2006" }}{{ with .Params.author }} · {{ . }}{{ end }}{{ with .Params.location }} · {{ . }}{{ end }}</time>
       <h1 class="article-title">{{ .Title }}</h1>
     </div>
   </section>
@@ -28,6 +31,30 @@
     <div class="article-body">
       {{ .Content }}
     </div>
+
+    <!-- Tags -->
+    {{ with .Params.tags }}
+    <div class="article-tags-full">
+      {{ range . }}<a href="/tags/{{ . | urlize }}/" class="article-tag-link">{{ . }}</a>{{ end }}
+    </div>
+    {{ end }}
+
+    <!-- Cross-links: Substack / YouTube -->
+    {{ if or .Params.substack_url .Params.youtube_url }}
+    <div class="article-crosslinks">
+      <p class="crosslinks-label">Also available on</p>
+      {{ with .Params.substack_url }}
+      <a href="{{ . }}" target="_blank" rel="noopener" class="crosslink crosslink--substack">
+        <span class="crosslink-icon">✉</span> Read on Substack
+      </a>
+      {{ end }}
+      {{ with .Params.youtube_url }}
+      <a href="{{ . }}" target="_blank" rel="noopener" class="crosslink crosslink--youtube">
+        <span class="crosslink-icon">▶</span> Watch on YouTube
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
   </div>
 
   <div class="article-end">

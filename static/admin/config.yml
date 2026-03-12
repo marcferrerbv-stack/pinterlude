@@ -11,7 +11,7 @@ collections:
     folder: "content/blog"
     create: true
     slug: "{{slug}}"
-    sortable_fields: ["date", "title", "author", "pillar"]
+    sortable_fields: ["date", "title", "author", "pillar", "language"]
     view_filters:
       - label: "Marc"
         field: author
@@ -19,9 +19,20 @@ collections:
       - label: "Linda"
         field: author
         pattern: "Linda"
+      - label: "English"
+        field: language
+        pattern: "en"
+      - label: "Français"
+        field: language
+        pattern: "fr"
+      - label: "Featured"
+        field: featured
+        pattern: true
     view_groups:
       - label: "Pillar"
         field: pillar
+      - label: "Language"
+        field: language
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
@@ -34,6 +45,14 @@ collections:
           - { label: "Linda", value: "Linda" }
           - { label: "Marc & Linda", value: "Marc & Linda" }
         default: "Marc"
+      - label: "Language"
+        name: "language"
+        widget: "select"
+        options:
+          - { label: "English", value: "en" }
+          - { label: "Français", value: "fr" }
+        default: "en"
+        hint: "Primary language of this article"
       - label: "Pillar"
         name: "pillar"
         widget: "select"
@@ -45,10 +64,35 @@ collections:
           - { label: "Linda's Words — Literary voice", value: "words" }
         required: false
         hint: "Which content pillar does this belong to?"
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        hint: "Keywords separated by commas (e.g. Switzerland, ultratrail, New York)"
+      - label: "Location"
+        name: "location"
+        widget: "string"
+        required: false
+        hint: "Where was this written? (e.g. Boulder, CO / Queens, NYC / Medellín)"
       - label: "Cover Image"
         name: "cover"
         widget: "image"
         required: false
         hint: "Optional cover image for the article"
+      - label: "Featured"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "Featured articles appear larger on the homepage"
+      - label: "Substack URL"
+        name: "substack_url"
+        widget: "string"
+        required: false
+        hint: "Link to the Substack version of this article"
+      - label: "YouTube URL"
+        name: "youtube_url"
+        widget: "string"
+        required: false
+        hint: "Link to a related YouTube video"
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Body", name: "body", widget: "markdown" }
