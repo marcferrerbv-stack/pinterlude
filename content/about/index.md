@@ -14,8 +14,7 @@ description: "The story behind Pinterlude — who we are, why we left, and where
 
 ## Marc
 
-Three master's degrees and a doctorate in exercise physiology. Affiliated researcher at the University of Lausanne. Ultramarathon runner — 10 to 15 hours of training per week across trails, swimming, and cycling. Speaks French, English, Russian, and increasingly passable Spanish.
-
+A Ph.D. in geosciences from EPFL, three master's degrees — including one in kinesiology from the University of Lausanne — and 24 years teaching mathematics. Affiliated researcher at UNIL, ultramarathon runner training 10 to 15 hours a week across trails, swimming, and cycling. Speaks French, English, Russian, and increasingly passable Spanish.
 Currently building online education platforms, preparing for the ACSM-EP certification, and trying to convince his body that altitude in Colorado is "character building."
 
 ## Linda
@@ -28,8 +27,7 @@ Launching her translation career in New York starting April 2026. The kind of pe
 
 ## The plan
 
-We left Switzerland in 2024. We're currently based in Colorado. Starting 2027, we begin traveling — six months a year at first, more after Marc gets his U.S. citizenship. South America first (Colombia, Argentina, Peru), then Southeast Asia, then wherever the roads lead.
-
+We left Switzerland in 2024. We're currently based in Colorado. We work online, which gives us the freedom to travel — a few months a year, between longer stretches at home. South America first (Colombia, Argentina, Peru), then Southeast Asia, then wherever the roads lead.
 We work online. We write. We run. We translate. And we document the whole thing here.
 
 **Pinterlude** is a portmanteau: a *pin* dropped between two lives, an *interlude* that might just last twenty years.
